@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+## Scripts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Prerequisites
 
-## Available Scripts
+- Have the latest version of nodejs installed with npm
 
-In the project directory, you can run:
 
-### `yarn start`
+### To start the project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Open the project folder in a console or terminal.
+1. Execute `npm install` command to install the required libraries of the project.
+1. Execute `npm start` command to start the application on [http://localhost:3000](http://localhost:3000).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Note: The application is updated automatically each time a file is modified in the project.
 
-### `yarn test`
+### Task
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Reproduce as closely as possible the search result cards design below. The display must be responsive. The number of cards displayed should decrease or increase depending on the screen width using bootstrap.
 
-### `yarn build`
+** BONUS 1 **: Use the Festo LX public search REST API documented below to get real data.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+** BONUS 2 **: Display the detailed information of the course (description for example) in a new detail page or a popup from the “Show More” button. (No particular restriction)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Evaluation criteria
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Code quality (Clean Code).
+- Design accuracy.
 
-### `yarn eject`
+### Design of the result card
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Design lesson cards](CardsDesign.jpg)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Search API
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The search API is available through the REST API at the following address:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`GET https://lx.festo.com/SearchService/api/search/learning-paths/public`
 
-## Learn More
+**Settings :**
+- term (string): the searched text (default "")
+- page (number): results page (default 1)
+- size (number): number of results (default 20)
+- sortOrder (number): sort value (MostRelevant default)
+    - MostRelevant = 1
+    - Popularity = 2
+    - MostRecent = 3
+    - Oldest = 4
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For example :
+`https://lx.festo.com/SearchService/api/search/learning-paths/public?term=motor&page=1&size=20&sortOrder=1`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The model corresponding to the return of the web service is already in the project under:
+`/src/web-service/models/CourseSearchResultList.ts`
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**IMPORTANT: Note that we don't allow `localhost:3000` in the `Access-Control-Allow-Origin` response headers of `lx.festo.com`, so you'll have to bypass the CORS. You can easily deal with this issue by installing a web browser plugin or using a proxy like `https://cors-anywhere.herokuapp.com/`.**

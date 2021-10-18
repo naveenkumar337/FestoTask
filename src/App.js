@@ -1,23 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
-
-function App() {
+import 'bootstrap/dist/css/bootstrap.css'
+import CourseIndex from './Components/Card/Index'
+import CourseDetails from './Components/Card/CourseDetails'
+import {GlobalProvider} from './Components/GlobalContext/GlobalState'
+import {BrowserRouter as Router,Route,Link,Switch} from 'react-router-dom'
+function App() { 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Router>
+      <GlobalProvider>
+      <Switch>
+        
+        <Route path="/Course/:id" children={<CourseDetails/>}>
+        </Route>
+        <Route path="/" component={CourseIndex}/>
+      </Switch>
+    </GlobalProvider>
+         </Router>
     </div>
   );
 }
