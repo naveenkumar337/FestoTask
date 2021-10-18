@@ -1,40 +1,30 @@
-import {createContext,useReducer} from 'react'
-import AppReducer from './AppReducer'
-import {Data} from '../../tempdata'
-import {Get_Course} from '../WebServices/GetInfo' 
-const InitialState={
-    Courses:{}
+import { createContext, useReducer } from 'react';
+import AppReducer from './AppReducer';
+const InitialState = {
+	courses: {}
 };
 
-export const GlobalContext=createContext(InitialState);
-export const GlobalProvider=({children})=>{ debugger;
-const [state, dispatch] = useReducer(AppReducer, InitialState);
-function getInfo(data){
-    dispatch({
-        type:"GetInfo",
-        payload:data
-    });    
-}
-function getCardInfo(id){
-    dispatch({
-        type:'GetCardInfo',
-        payload:id
-    })
-}
-function getCourse(id){
-  console.log(state.Courses);
-return state.Courses ? state.Courses.publicLearningPathResults.find(e=>e.id===id):null;
-}
-return (
-    <GlobalContext.Provider
-      value={{
-        Courses: state.Courses,
-        getInfo,
-        getCardInfo,
-        getCourse
-      }}
-    >
-      {children}
-    </GlobalContext.Provider>
-  );
-}
+export const GlobalContext = createContext(InitialState);
+export const GlobalProvider = ({ children }) => {
+	const [state, dispatch] = useReducer(AppReducer, InitialState);
+	function getAllCourses(data) {
+		dispatch({
+			type: 'GetInfo',
+			payload: data
+		});
+	}
+	function getCourse(id) {
+		return state.courses ? state.courses.publicLearningPathResults.find((e) => e.id === id) : null;
+	}
+	return (
+		<GlobalContext.Provider
+			value={{
+				courses: state.courses,
+				getAllCourses,
+				getCourse
+			}}
+		>
+			{children}
+		</GlobalContext.Provider>
+	);
+};

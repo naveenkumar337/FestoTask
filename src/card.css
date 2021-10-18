@@ -1,63 +1,70 @@
-.card-header{
-  height: 9rem !important;
+.c-header {
+    height: 9rem !important;
+    background-color: rgb(156, 154, 154);
 }
-.card-body{
+
+.c-body {
     height: 7rem !important;
 }
-.card{
+
+.card {
     box-shadow: 0px 2px 2px gray;
 }
-img{
+
+img {
     width: 100% !important;
     height: 100% !important;
     color: white;
 }
-.col-md-2{
+
+.col-md-2 {
     font-weight: bold;
 }
-.row
-{
-    margin:15px;
+
+.row {
+    margin: 15px;
 }
 
-.card-header{
-    background-color: rgb(156, 154, 154);
+.userFieldSet {
+    margin: auto !important;
+    margin-left: 30px !important;
+    border-radius: 5px !important;
+    border: 1px solid darkblue !important;
 }
-fieldset{
-   margin: auto;
-   margin-left: 30px;
-   border-radius: 5px;
-   border:1px solid darkblue;
-}
-legend{
+
+.userFieldSet>legend {
     font-weight: bold;
     padding: 5px;
     width: auto;
-    border:1px solid darkcyan;
+    border: 1px solid darkcyan;
     border-radius: 5px;
     line-height: 25px;
     padding: 0;
     margin-left: 15px;
-    
 }
-.images{
-margin-left:30px;
+
+.images {
+    margin-left: 30px;
 }
-.images > img{
+
+.images>img {
     height: 332px !important;
 }
-.modal-dialog{
+
+.m-dialog {
     max-width: 850px !important;
-    margin-top:0 !important;
+    margin-top: 0 !important;
 }
-.modal-body{
+
+.m-body {
     max-height: 100%;
     min-height: 250px !important;
     height: 500px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
-.modal{
-        display: block;
-        max-width: 100vw;
+
+.modal {
+    display: block;
+    max-width: 100vw;
 }
